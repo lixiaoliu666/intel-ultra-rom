@@ -33,7 +33,7 @@ git clone https://github.com/lixiaoliu666/intel-ultra-rom 可能会断掉，请�
 
 ③、到Build目录进行操作，合并出来具体型号的rom或者cmdrom.bat 参考build_efi_rom.sh 最后一行命令
 
-或者你在windows上直接双击运行 cmdrom.bat 就是
+或者你在windows上直接双击运行 cmdrom.bat 就是，
 Build目录下的是生成rom必备的各种efi文件及efirom（efirom.exe）
 
 2.2 如何使用
