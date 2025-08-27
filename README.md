@@ -1,6 +1,8 @@
 # intel-ultra-rom
 build ROM files for Intel Ultra 1th-2th Gen iGPU passthrough in PVE VMs（intel ultra 1-2代pve虚拟机核显直通使用rom）
 
+intel 6-14代pve虚拟机核显直通请使用 https://github.com/lixiaoliu666/intel6-14rom
+
 intel ultra 1-2代pve虚拟机核显直通使用rom 使用说明，只支持qemu 10及以上（不支持qemu 7 8 9）
 
 dpkg -l|grep kvm 运行这个命名，查看qemu版本，下面的10.0.2-1代表qemu 10 
