@@ -30,6 +30,11 @@ jobs:
           mkdir -p artifacts
           find ./ -name "*.rom" -exec cp {} ./artifacts/ \;
           find ./ -name "*autoGenPatch.patch" -exec cp {} ./artifacts/ \;
+          find ./ -name "EfiRom.exe" -exec cp {} ./artifacts/ \;
+          find ./ -name "cmd运行自动生成88合一rom.bat" -exec cp {} ./artifacts/ \;
+          find ./ -name "IgdAssignmentDxe.efi " -exec cp {} ./artifacts/ \;
+          find ./ -name "PlatformGopPolicy.efi " -exec cp {} ./artifacts/ \;
+          
           
 
       # Step 4: 上传工件
