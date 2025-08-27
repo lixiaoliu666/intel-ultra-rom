@@ -1,4 +1,5 @@
 #!/bin/bash
+git clone https://github.com/tianocore/edk2.git
 git submodule update --init
 cp -r Build edk2/
 cd edk2
