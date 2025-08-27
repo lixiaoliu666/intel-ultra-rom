@@ -20,5 +20,12 @@ cp Build/OvmfX64/DEBUG_GCC5/X64/IgdAssignmentDxe.efi Build/
 cp ./BaseTools/Source/C/bin/EfiRom Build/
 cd Build
 chmod +x EfiRom
-./EfiRom -e pc-ultra-1-2-IntelGopDriver.efi IgdAssignmentDxe.efi PlatformGopPolicy.efi -f 0x8086 -i 0xffff -o ultra-1-2-qemu10.rom
+./EfiRom -e pc-ultra-1-2-IntelGopDriver.efi nb-ultra-155h.efi nb-ultra-255h.efi IgdAssignmentDxe.efi PlatformGopPolicy.efi -f 0x8086 -i 0xffff -o ultra-1-2-qemu10.rom
 ls
+./EfiRom -e pc-ultra-1-2-IntelGopDriver.efi  IgdAssignmentDxe.efi PlatformGopPolicy.efi -f 0x8086 -i 0xffff -o pc-ultra-1-2-qemu10.rom
+ls
+./EfiRom -e nb-ultra-155h.efi IgdAssignmentDxe.efi PlatformGopPolicy.efi -f 0x8086 -i 0xffff -o nb-155h-qemu10.rom
+ls
+./EfiRom -e nb-ultra-255h.efi IgdAssignmentDxe.efi PlatformGopPolicy.efi -f 0x8086 -i 0xffff -o nb-255h-qemu10.rom
+ls
+
