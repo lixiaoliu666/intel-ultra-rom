@@ -1,0 +1,81 @@
+name: Build intel ultra 1-2 all roms
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch: 
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    env:
+      TZ: Asia/Shanghai
+    steps:
+      # Step 1: 检出代码
+      - uses: actions/checkout@v3
+        with:  
+          submodules: 'true'
+
+      # Step 2: 安装构建所需的软件包
+      - name: Install base package
+        run: |
+          sudo apt update && sudo apt install build-* bc dosfstools iasl mtools nasm \
+          python3 python3-pexpect qemu-utils uuid-dev xorriso -y
+
+      # Step 3: 构建 ROM 文件
+      - name: Build
+        run: |
+          bash build_efi_rom.sh
+          mkdir -p artifacts
+          find ./ -name "*.rom" -exec cp {} ./artifacts/ \;
+          find ./ -name "*autoGenPatch.patch" -exec cp {} ./artifacts/ \;
+          
+
+      # Step 4: 上传工件
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: intel-ultra-igdrom
+          path: artifacts/*
+
+      # Step 5: 获取当前时间
+      - name: Get current time
+        id: current-time
+        uses: josStorer/get-current-time@v2.0.2
+        with:
+          format: YYYYMMDD-HHmmSS
+          utcOffset: "+08:00"
+
+      # Step 6: 列出 artifacts 目录中的文件
+      - name: List artifacts directory
+        run: |
+          echo "Listing files in artifacts directory:"
+          ls -l artifacts/
+
+      # Step 7: 创建 GitHub Release
+      - name: Create GitHub Releases
+        id: create_release
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ format('v2.0-{0}', steps.current-time.outputs.formattedTime) }}
+          release_name: ${{ format('v2.0 build-{0}', steps.current-time.outputs.formattedTime) }}
+          body: |
+            build ultra 1-2 all roms 只适用于qemu10及以上版本（不支持qemu7 8 9）ovmf+i440fx 10核显直通请看本项目说明，ovmf+q35 10请阅读此教程 https://www.bilibili.com/read/cv41702099
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Step 8: 上传 ROM 文件到 Release
+      - name: Upload each ROM file to release
+        run: |
+          for file in ${GITHUB_WORKSPACE}/artifacts/*; do
+            echo "Uploading $file"
+            echo "file=$file" >> $GITHUB_ENV
+            # 调用上传动作
+            curl -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+              -H "Content-Type: application/octet-stream" \
+              --data-binary @"$file" \
+              "https://uploads.github.com/repos/${{ github.repository }}/releases/${{ steps.create_release.outputs.id }}/assets?name=$(basename $file)"
+          done
