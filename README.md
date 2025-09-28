@@ -118,3 +118,7 @@ UBU 1.79.17下载地址：https://pan.baidu.com/s/1pD7NqJoOThQawJw59NyTHQ 提取
 
 ②、用AMI bios（ami固件）提取工具 直接提取 类似教程详见 https://www.bilibili.com/read/cv25423474/ 提取物理机bios 部分
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=lixiaoliu666/intel-ultra-rom&type=Date)](https://www.star-history.com/#lixiaoliu666/intel-ultra-rom&Date)
+
