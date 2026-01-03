@@ -1,5 +1,5 @@
 # intel-ultra-rom
-build ROM files for Intel Ultra 1th-2th Gen iGPU passthrough in PVE VMs（intel ultra 1-2代pve虚拟机核显直通使用rom）
+build ROM files for Intel Ultra 1th-2th Gen iGPU passthrough in PVE VMs（intel ultra 1-2代pve虚拟机核显直通使用rom）use source https://github.com/tomitamoeko/VfioIgdPkg
 
 intel 6-14代pve虚拟机核显直通请使用 https://github.com/lixiaoliu666/intel6-14rom
 
